@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <description>Spring Cloud 分布式微服务架构 Maven的顶级父类统一管理maven模板和版本.</description>
+
+    <groupId>me.loveshare</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <organization>
+        <name>爱分享</name>
+        <url>https://loveshare.me/</url>
+    </organization>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <!-- project version -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <!-- per submodule version -->
+        <registry-center.version>1.0.0</registry-center.version>
+        <config-center.version>1.0.0</config-center.version>
+        <!-- third party version -->
+        <lombok.version>1.16.16</lombok.version>
+        <logback.classic.version>1.2.3</logback.classic.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Cloud Dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.SR7</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--Tools-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!-- Logger -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.classic.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>../registry-center</module>
+        <module>../config-center</module>
+    </modules>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <!-- Address -->
+                <registry-center.address>192.168.1.119</registry-center.address>
+                <!-- Port -->
+                <registry-center.port>1101</registry-center.port>
+                <config-center.port>1102</config-center.port>
+                <!-- config -->
+                <config-center.git.uri>https://github.com/typa1/microservices-configs.git</config-center.git.uri>
+                <config-center.git.searchPaths>practic</config-center.git.searchPaths>
+                <config-center.git.username>git的账号</config-center.git.username>
+                <config-center.git.password>git的密码</config-center.git.password>
+                <config-center.git.label>master</config-center.git.label>
+                <config-center.git.application>config-v1</config-center.git.application>
+                <config-center.git.profile>dev</config-center.git.profile>
+                <!-- logger -->
+                <log.level>INFO</log.level>
+                <third.party.log.level>ERROR</third.party.log.level>
+                <logback.file.path>/Users/tony_tian/develop/logs</logback.file.path> <!-- tail no '/' -->
+            </properties>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.yml</include>
+                    <include>templates/**</include>
+                    <include>static/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java/</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

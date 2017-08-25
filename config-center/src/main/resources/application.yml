@@ -1,0 +1,22 @@
+server:
+  port: ${config-center.port}
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${config-center.git.uri}                          # git仓库的地址  https://github.com/typa1/microservices-configs.git
+          searchPaths: ${config-center.git.searchPaths}          # git仓库地址下的相对地址，可以配置多个，用,分割
+          username: ${config-center.git.username}                # git仓库的账号
+          password: ${config-center.git.password}                # git仓库的密码
+          label: ${config-center.git.label}                      # git分支
+          application: ${config-center.git.application}          # {application}-{profile}.properties eg: config-v1-dev.properties  config-v1
+          profile: ${config-center.git.profile}                  # {application}-{profile}.properties eg: config-v1-dev.properties  dev
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/
