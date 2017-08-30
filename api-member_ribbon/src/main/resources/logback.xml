@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} - %-5level - ${PID} - [%-32.32thread] - %-64.64logger{64} : %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logback.file.path}/api-member_ribbon/api-member_ribbon.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.file.path}/api-member_ribbon/api-member_ribbon.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} - %-5level - ${PID} - [%-32.32thread] - %-64.64logger{64} : %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="me.loveshare" level="${log.level}"/>
+
+	<logger name="org.xnio" level="${third.party.log.level}"/>
+	<logger name="io.undertow" level="${third.party.log.level}"/>
+	<logger name="org.springframework" level="${third.party.log.level}"/>
+	<logger name="org.apache" level="${third.party.log.level}"/>
+	<logger name="ch.qos.logback" level="${third.party.log.level}"/>
+	<logger name="com.netflix" level="${third.party.log.level}"/>
+	<logger name="org.hibernate" level="${third.party.log.level}"/>
+
+	<root level="${log.level}">
+		<appender-ref ref="console"/>
+		<appender-ref ref="rollingFile"/>
+	</root>
+</configuration>

@@ -1,0 +1,19 @@
+server:
+  port: ${monitor-center.port}
+spring:
+  application:
+    name: monitor-center
+security:
+  basic:
+    enabled: false
+turbine:
+  aggregator:
+    clusterConfig: default
+  appConfig: api-member_feign,api-member_ribbon
+  clusterNameExpression: new String("default")
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/

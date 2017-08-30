@@ -1,0 +1,12 @@
+server:
+  port: ${service-member.port}
+mybatis:
+  mapper-locations: classpath*:me/loveshare/service/member/data/xml/*Mapper.xml
+  type-aliases-package: me.loveshare.service.member.data.entity.dbo
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+database:
+  index: 1

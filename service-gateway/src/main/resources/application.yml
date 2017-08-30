@@ -1,0 +1,22 @@
+server:
+  port: ${service-gateway.port}
+spring:
+  application:
+    name: service-gateway
+# routes to serviceId
+zuul:
+#  ignored-services: microservicesp-member                        # 需要忽视的服务(配置后将不会被路由)
+  routes:
+    api-a:                                                        # 可以随便写，在zuul上面唯一即可；当这里的值 = service-id时，service-id可以不写。
+      path: /api-a/**                                             # 想要映射到的路径
+      serviceId: service-member                                   # Eureka中的serviceId
+# routes to url
+#    api-a-url:
+#      path: /api-a-url/**
+#      url: http://localhost:2222/
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/

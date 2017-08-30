@@ -1,0 +1,22 @@
+server:
+  port: ${api-member_feign.port}
+spring:
+  application:
+    name: api-member_feign
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/
+swagger:
+  api: "me.loveshare.member.api"
+  title: "用户模块API"
+  description: "用户模块，RESTful API 接口文档说明"
+  version: 1.0.0
+  author: Tony Tian
+  gmt: 2017-08-01
+# set hystrix timeout = 15s
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 15000
+# forbid hystrix timeout
+hystrix.command.default.execution.timeout.enabled: false

@@ -30,9 +30,29 @@
         <!-- per submodule version -->
         <registry-center.version>1.0.0</registry-center.version>
         <config-center.version>1.0.0</config-center.version>
+        <monitor-center.version>1.0.0</monitor-center.version>
+        <common-entity.version>1.0.0</common-entity.version>
+        <common-util.version>1.0.0</common-util.version>
+        <data-mysql.version>1.0.0</data-mysql.version>
+        <service-member.version>1.0.0</service-member.version>
+        <api-member_feign.version>1.0.0</api-member_feign.version>
+        <api-member_ribbon.vesion>1.0.0</api-member_ribbon.vesion>
+        <common-api-doc.version>1.0.0</common-api-doc.version>
+        <service-gateway.version>1.0.0</service-gateway.version>
         <!-- third party version -->
+        <spring.boot.version>1.4.5.RELEASE</spring.boot.version>
+        <mysql.connector.version>5.1.43</mysql.connector.version>
+        <druid.boot.version>1.1.2</druid.boot.version>
+        <mybatis.boot.version>1.3.0</mybatis.boot.version>
         <lombok.version>1.16.16</lombok.version>
+        <hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
+        <fastjson.version>1.2.30</fastjson.version>
+        <gson.version>2.8.0</gson.version>
+        <jackson.version>2.7.3</jackson.version>
         <logback.classic.version>1.2.3</logback.classic.version>
+        <junit.version>4.12</junit.version>
+        <swagger.version>2.6.0</swagger.version>
+        <servlet.api.version>3.1.0</servlet.api.version>
     </properties>
 
     <dependencyManagement>
@@ -45,11 +65,58 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- MySQL Druid MyBatis -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.boot.version}</version>
+            </dependency>
             <!--Tools-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+            <!-- Json -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
             <!-- Logger -->
             <dependency>
@@ -57,27 +124,92 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.classic.version}</version>
             </dependency>
+            <!--Test-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <!-- Platform dependencies -->
+            <dependency>
+                <groupId>me.loveshare</groupId>
+                <artifactId>data-mysql</artifactId>
+                <version>${data-mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.loveshare</groupId>
+                <artifactId>common-entity</artifactId>
+                <version>${common-entity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.loveshare</groupId>
+                <artifactId>common-util</artifactId>
+                <version>${common-util.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>me.loveshare</groupId>
+                <artifactId>common-api-doc</artifactId>
+                <version>${common-api-doc.version}</version>
+            </dependency>
+            <!-- Api doc -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
         <module>../registry-center</module>
         <module>../config-center</module>
+        <module>../monitor-center</module>
+        <module>../common-entity</module>
+        <module>../common-util</module>
+        <module>../common-api-doc</module>
+        <module>../data-mysql</module>
+        <module>../service-member</module>
+        <module>../api-member_feign</module>
+        <module>../api-member_ribbon</module>
+        <module>../service-gateway</module>
     </modules>
+
     <profiles>
         <profile>
             <id>dev</id>
             <properties>
                 <!-- Address -->
-                <registry-center.address>192.168.1.119</registry-center.address>
+                <registry-center.address>192.168.1.151</registry-center.address>
                 <!-- Port -->
                 <registry-center.port>1101</registry-center.port>
                 <config-center.port>1102</config-center.port>
+                <service-member.port>1201</service-member.port>
+                <api-member_feign.port>1301</api-member_feign.port>
+                <api-member_ribbon.port>1302</api-member_ribbon.port>
+                <monitor-center.port>1303</monitor-center.port>
+                <service-gateway.port>1304</service-gateway.port>
                 <!-- config -->
                 <config-center.git.uri>https://github.com/typa1/microservices-configs.git</config-center.git.uri>
                 <config-center.git.searchPaths>practic</config-center.git.searchPaths>
-                <config-center.git.username>git的账号</config-center.git.username>
-                <config-center.git.password>git的密码</config-center.git.password>
+                <config-center.git.username>typa1@qq.com</config-center.git.username>
+                <config-center.git.password>01314TYPa1</config-center.git.password>
                 <config-center.git.label>master</config-center.git.label>
                 <config-center.git.application>config-v1</config-center.git.application>
                 <config-center.git.profile>dev</config-center.git.profile>
@@ -92,6 +224,7 @@
             </activation>
         </profile>
     </profiles>
+
     <build>
         <resources>
             <resource>
