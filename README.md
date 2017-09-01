@@ -37,6 +37,7 @@ api-member_feign
 #### 4.swagger文档(附录图片)
 # 注：各个细节在，各个pom.xml和@SpringBootApplication都有说明~~~
 ![注册中心](http://loveshare.oss-cn-shanghai.aliyuncs.com/universal/image/github/spring-cloud/2.jpg)
+# [监控中心](http://loveshare.oss-cn-shanghai.aliyuncs.com/universal/image/github/spring-cloud/3.jpg)
 ![监控中心](http://loveshare.oss-cn-shanghai.aliyuncs.com/universal/image/github/spring-cloud/3.jpg)
 ![监控中心](http://loveshare.oss-cn-shanghai.aliyuncs.com/universal/image/github/spring-cloud/4.jpg)
 ![swagger文档](http://loveshare.oss-cn-shanghai.aliyuncs.com/universal/image/github/spring-cloud/1.jpg)
