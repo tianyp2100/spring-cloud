@@ -47,6 +47,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
+        <!-- Http client -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
         <!-- tools -->
         <dependency>
             <groupId>org.projectlombok</groupId>

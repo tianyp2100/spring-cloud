@@ -63,4 +63,50 @@ public class UserInfoApi extends BaseApi {
         map.put("code", "KWY987654");
         return memberClient.list2(map);
     }
+
+    /**
+     * 错误信息测试-服务端未提供此方法
+     */
+    @GetMapping("list3")
+    @ApiOperation(value = "用户列表测试3")
+    public JsonResult list3() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("id", 123);
+        map.put("name", "卡哇伊");
+        map.put("code", "KWY987654");
+        return memberClient.list3(map);
+    }
+
+    /**
+     * 错误信息测试-超时测试
+     */
+    @GetMapping("list4")
+    @ApiOperation(value = "异常测试： 超时测试")
+    public JsonResult list4() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("id", 123);
+        map.put("name", "卡哇伊");
+        map.put("code", "KWY987654");
+        return memberClient.list4(map);
+    }
+
+    /**
+     * 错误信息测试-多参数(3个以上)
+     */
+    @GetMapping("list5")
+    @ApiOperation(value = "异常测试： 多参数(3个以上)")
+    public JsonResult list5() {
+        return memberClient.list5(123, "可可爱", "KK870587882", (byte) 125, "男", "中国", "甘肃省");
+    }
+
+    /**
+     * 5 / 0
+     *
+     * @return
+     */
+    @GetMapping("list6")
+    @ApiOperation(value = "用户列表测试1", hidden = true)
+    public JsonResult list6() {
+        return memberClient.list6(5, 0);
+    }
 }

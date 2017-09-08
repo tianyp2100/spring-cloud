@@ -38,12 +38,13 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
-        log.info("\n*** Initialize Swagger RESTful API successful." + version);
-        return new ApiInfoBuilder()
+        ApiInfo api = new ApiInfoBuilder()
                 .title(title)
                 .description(description())
                 .version(version)
                 .build();
+        log.info("\n*** Initialize Swagger RESTful API successful." + version);
+        return api;
     }
 
     private String description() {
