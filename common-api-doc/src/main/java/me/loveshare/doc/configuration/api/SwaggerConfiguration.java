@@ -38,18 +38,17 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
-        ApiInfo api = new ApiInfoBuilder()
+        log.info("\n*** Initialize Swagger RESTful API successful." + version);
+        return new ApiInfoBuilder()
                 .title(title)
                 .description(description())
                 .version(version)
                 .build();
-        log.info("\n*** Initialize Swagger RESTful API successful." + version);
-        return api;
     }
 
     private String description() {
         StringBuilder su = new StringBuilder("温馨提示：");
-        su.append(description).append("，作者：").append("创建时间：").append(gmt).append("(●'◡'●)。");
+        su.append(description).append("，作者：").append(author).append("创建时间：").append(gmt).append("(●'◡'●)。");
         return su.toString();
     }
 
