@@ -206,10 +206,10 @@
                 <monitor-center.port>1303</monitor-center.port>
                 <service-gateway.port>1304</service-gateway.port>
                 <!-- config -->
-                <config-center.git.uri>https://github.com/typa1/microservices-configs.git</config-center.git.uri>
+                <config-center.git.uri>https://github.com/loveshareme/microservices-configs.git</config-center.git.uri>
                 <config-center.git.searchPaths>practic</config-center.git.searchPaths>
-                <config-center.git.username>typa1@qq.com</config-center.git.username>
-                <config-center.git.password>01314TYPa1</config-center.git.password>
+                <config-center.git.username>Your github account</config-center.git.username>
+                <config-center.git.password>Your github passwd</config-center.git.password>
                 <config-center.git.label>master</config-center.git.label>
                 <config-center.git.application>config-v1</config-center.git.application>
                 <config-center.git.profile>dev</config-center.git.profile>
