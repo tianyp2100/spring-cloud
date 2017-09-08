@@ -7,7 +7,7 @@ Spring Cloud
 ##### 注：支持需要 git、jdk、maven。
 |名称|模块|说明
 |---|---|---
-|服务消费者Feign|api-member_feign|Feign是一种声明式、模板化的HTTP客户端
+|服务消费者Feign|api-member_feign|Feign是一种声明式、模板化的HTTP客户端(Feign+OkHttpClient+ErrorDecoder)
 |服务消费者Ribbon|api-member_ribbon|Ribbon是一个基于HTTP和TCP客户端的负载均衡器
 |Swagger接口文档|common-api-doc|接口页面文档化和强大的页面测试功能来调试每个RESTful API
 |通用实体类|common-entity|通用实体类模块(分层领域模型规约)
