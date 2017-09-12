@@ -1,0 +1,17 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/
+spring:
+  application:
+    name: api-member_feign
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-center
+      name: ${config-center.git.application}                                             # 要读取的配置文件application属性
+      profile: ${config-center.git.profile}                                              # 要读取的配置文件profile属性,默认是default
+      label: ${config-center.git.label}                                                  # git分支

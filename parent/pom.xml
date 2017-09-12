@@ -202,30 +202,24 @@
         <profile>
             <id>dev</id>
             <properties>
-                <!-- Address -->
-                <registry-center.address>192.168.1.151</registry-center.address>
-                <!-- Port -->
+                <!-- Registry center's ip address -->
+                <registry-center.address>192.168.1.119</registry-center.address>
+                <!-- Registry and config center's port -->
                 <registry-center.port>1101</registry-center.port>
                 <config-center.port>1102</config-center.port>
-                <service-member.port>1201</service-member.port>
-                <api-member_feign.port>1301</api-member_feign.port>
-                <api-member_ribbon.port>1302</api-member_ribbon.port>
-                <monitor-center.port>1303</monitor-center.port>
-                <service-gateway.port>1304</service-gateway.port>
-                <!-- config -->
+                <!-- Config center's properties  -->
                 <config-center.git.uri>https://github.com/loveshareme/microservices-configs.git</config-center.git.uri>
                 <config-center.git.searchPaths>practic</config-center.git.searchPaths>
-                <config-center.git.username>Your github account</config-center.git.username>
-                <config-center.git.password>Your github passwd</config-center.git.password>
                 <config-center.git.label>master</config-center.git.label>
                 <config-center.git.application>config-v1</config-center.git.application>
                 <config-center.git.profile>dev</config-center.git.profile>
-                <!-- logger -->
+                <config-center.git.username>Your github account</config-center.git.username>
+                <config-center.git.password>Your github passwd</config-center.git.password>
+                <!-- Log's level and position -->
                 <log.level>INFO</log.level>
                 <third.party.log.level>ERROR</third.party.log.level>
                 <logback.file.path>/Users/tony_tian/develop/logs</logback.file.path> <!-- tail no '/' -->
             </properties>
-
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>

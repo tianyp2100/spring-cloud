@@ -10,3 +10,5 @@ mybatis:
     default-statement-timeout: 30
 database:
   index: 1
+# multi service's version
+service-version: v2.0.0

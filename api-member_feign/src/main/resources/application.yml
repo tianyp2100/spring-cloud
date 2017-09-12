@@ -1,14 +1,10 @@
 server:
   port: ${api-member_feign.port}
-spring:
-  application:
-    name: api-member_feign
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/
+  ssl:
+   key-store: ${api-member_feign.https.keystore-file}
+   key-store-password: ${api-member_feign.https.keystore-password}
+http:
+ port: ${api-member_feign.http.port}
 swagger:
   api: "me.loveshare.member.api"
   title: "用户模块API"
@@ -37,3 +33,5 @@ okhttp:
   write-timeout: 70
   max-idle-connections: 5
   keep-alive-duration: 5   # unit: min
+# multi service's version
+service-version: v2.0.0
