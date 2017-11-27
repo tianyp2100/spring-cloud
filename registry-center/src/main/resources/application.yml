@@ -11,4 +11,7 @@ eureka:
     fetch-registry: false          # 表示是否从eureka服务器获取注册信息，同上，这里不需要
     serviceUrl:
       defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/  # 设置eureka服务器所在的地址，即指定服务注册中心的位置 ，服务注册和发现都需要依赖这个地址
-
+endpoints: # 安全地停止SpringBoot应用服务
+  shutdown:
+    enabled: true #启用shutdown, curl -X POST http://host:port/shutdown
+    sensitive: false #禁用密码验证

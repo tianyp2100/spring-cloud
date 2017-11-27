@@ -9,8 +9,11 @@
 
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logback.file.path}/registry-center/registry-center.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logback.file.path}/registry-center/registry-center.%d{yyyy-MM-dd}.log</fileNamePattern>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logback.file.path}/registry-center/registry-center.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>75</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+            <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} - %-5level - ${PID} - [%-32.32thread] - %-64.64logger{64} : %msg%n

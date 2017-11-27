@@ -1,37 +1,58 @@
 server:
-  port: ${api-member_feign.port}
+  port: ${api-member_feign.port} # https端口
   ssl:
-   key-store: ${api-member_feign.https.keystore-file}
+   key-store: ${api-member_feign.https.keystore-file}  # ssl证书
    key-store-password: ${api-member_feign.https.keystore-password}
 http:
- port: ${api-member_feign.http.port}
+ port: ${api-member_feign.http.port} # http端口
+# Feign配置
+    # Default JDK URLConnection ==> Apache HttpClient ==> OkHttp HttpClient
+    # Feign在默认情况下使用的是JDK原生的URLConnection发送HTTP请求，没有连接池，但是对每个地址会保持一个长连接，即利用HTTP的persistence connection。
+    # 我们可以用Apache的HTTP Client替换Feign原始的http client, 从而获取连接池、超时时间等与性能息息相关的控制能力。
+    # Spring Cloud从Brixtion.SR5版本开始支持这种替换。
+    # OkHttp替代Apache HttpClient
+    # 支持SPDY, 可以合并多个到同一个主机的请求
+    # 使用连接池技术减少请求的延迟(如果SPDY是可用的话)
+    # 使用GZIP压缩减少传输的数据量
+    # 缓存响应避免重复的网络请求
+feign:
+  okhttp:
+    enabled: true # Use okhttp replace feign's default JDK URLConnection.
+    connect-timeout: 45  # unit: s
+    read-timeout: 45
+    write-timeout: 70
+    max-idle-connections: 5
+    keep-alive-duration: 5   # unit: min
+  httpclient:
+    enabled: false
+  hystrix:  #Hystrix支持，如果为true，hystrix库必须在classpath中
+    enabled: false
+  compression:
+    request:
+      enabled: true  # 配置请求GZIP压缩
+      mime-types: text/xml,application/xml,application/json  # 配置压缩支持的MIME TYPE
+      min-request-size: 2048  # 配置压缩数据大小的下限
+    response:
+      enabled: true  # 配置响应GZIP压缩
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 45000 # 设置熔断超时时间
+        timeout:
+          enabled: false   # 关闭熔断功能
+endpoints: # 安全地停止SpringBoot应用服务
+  shutdown:
+    enabled: true #启用shutdown, curl -X POST http://host:port/shutdown
+    sensitive: false #禁用密码验证
 swagger:
   api: "me.loveshare.member.api"
   title: "用户模块API"
   description: "用户模块，RESTful API 接口文档说明"
-  version: 1.0.0
-  author: Tony Tian
-  gmt: 2017-08-01'
-# Default JDK URLConnection ==> Apache HttpClient ==> OkHttp HttpClient
-# Feign在默认情况下使用的是JDK原生的URLConnection发送HTTP请求，没有连接池，但是对每个地址会保持一个长连接，即利用HTTP的persistence connection。
-# 我们可以用Apache的HTTP Client替换Feign原始的http client, 从而获取连接池、超时时间等与性能息息相关的控制能力。
-# Spring Cloud从Brixtion.SR5版本开始支持这种替换。
-# OkHttp替代Apache HttpClient
-# 支持SPDY, 可以合并多个到同一个主机的请求
-# 使用连接池技术减少请求的延迟(如果SPDY是可用的话)
-# 使用GZIP压缩减少传输的数据量
-# 缓存响应避免重复的网络请求
-feign.httpclient.enabled: false
-feign.okhttp.enabled: true
-# set hystrix timeout = 15s
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 15000
-# forbid hystrix timeout
-hystrix.command.default.execution.timeout.enabled: false
-okhttp:
-  connect-timeout: 30  # unit: s
-  read-timeout: 30
-  write-timeout: 70
-  max-idle-connections: 5
-  keep-alive-duration: 5   # unit: min
+  version: "1.0.0"
+  author: "Tony Tian"
+  gmt: "2017-08-01"
 # multi service's version
-service-version: v2.0.0
+account-v1: 1.0.0

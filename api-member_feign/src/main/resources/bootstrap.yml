@@ -15,3 +15,5 @@ spring:
       name: ${config-center.git.application}                                             # 要读取的配置文件application属性
       profile: ${config-center.git.profile}                                              # 要读取的配置文件profile属性,默认是default
       label: ${config-center.git.label}                                                  # git分支
+  messages:
+    basename: ValidationMessages

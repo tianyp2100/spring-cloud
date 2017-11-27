@@ -6,7 +6,7 @@ spring:
   cloud:
     config:
       server:
-        git:
+        git:  # 使用Git仓库存储的配置文件
           uri: ${config-center.git.uri}                          # git仓库的地址  https://github.com/typa1/microservices-configs.git
           searchPaths: ${config-center.git.searchPaths}          # git仓库地址下的相对地址，可以配置多个，用,分割
           username: ${config-center.git.username}                # git仓库的账号
@@ -14,9 +14,20 @@ spring:
           label: ${config-center.git.label}                      # git分支
           application: ${config-center.git.application}          # {application}-{profile}.properties eg: config-v1-dev.properties  config-v1
           profile: ${config-center.git.profile}                  # {application}-{profile}.properties eg: config-v1-dev.properties  dev
+        # 以下都为本地配置文件和以上git配置注释切换使用
+#        native:
+#          searchLocations: classpath:/properties/               # 配置文件地址，只要指定文件夹的路径，可以是文件磁盘路径
+#          profile: ${config-center.git.application}
+#          label: ${config-center.git.profile}
+#  profiles:
+#    active: native  # 使用本地的配置文件
 eureka:
   instance:
     prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://${registry-center.address}:${registry-center.port}/eureka/
+endpoints: # 安全地停止SpringBoot应用服务
+  shutdown:
+    enabled: true #启用shutdown, curl -X POST http://host:port/shutdown
+    sensitive: false #禁用密码验证
